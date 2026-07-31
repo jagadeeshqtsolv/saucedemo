@@ -9,7 +9,7 @@
     "cases": [
       {
         "id": "386395d6-b446-4e19-a9c8-b9141e1f3994",
-        "title": "get user details api",
+        "title": "API Testing",
         "priority": "P1",
         "platforms": [
           "chrome"
@@ -19,70 +19,9 @@
           {
             "id": "step1",
             "action": "tap",
-            "targetDescription": "Call UserDetails.getUserDetails",
-            "screenName": "UserDetails",
-            "pageObjectMethod": "getUserDetails"
-          }
-        ],
-        "tags": [
-          "api"
-        ]
-      },
-      {
-        "id": "453ea65c-af63-4b69-a072-d873e1117ec6",
-        "title": "get user by id",
-        "priority": "P1",
-        "platforms": [
-          "chrome"
-        ],
-        "preconditions": [],
-        "steps": [
-          {
-            "id": "step1",
-            "action": "tap",
-            "targetDescription": "Call UserDetails.getUserById",
-            "screenName": "UserDetails",
-            "pageObjectMethod": "getUserById"
-          }
-        ],
-        "tags": []
-      },
-      {
-        "id": "7175c098-2381-4c66-820d-1b02db868404",
-        "title": "all api",
-        "priority": "P1",
-        "platforms": [
-          "chrome"
-        ],
-        "preconditions": [],
-        "steps": [
-          {
-            "id": "step1",
-            "action": "tap",
-            "targetDescription": "Call UserDetails.getUserDetails",
-            "screenName": "UserDetails",
-            "pageObjectMethod": "getUserDetails"
-          },
-          {
-            "id": "step2",
-            "action": "tap",
-            "targetDescription": "Call UserDetails.getUserById",
-            "screenName": "UserDetails",
-            "pageObjectMethod": "getUserById"
-          },
-          {
-            "id": "step3",
-            "action": "tap",
-            "targetDescription": "Call UserDetails.getUserByName",
-            "screenName": "UserDetails",
-            "pageObjectMethod": "getUserByName"
-          },
-          {
-            "id": "step4",
-            "action": "tap",
-            "targetDescription": "Call Login.login",
-            "screenName": "Login",
-            "pageObjectMethod": "login"
+            "targetDescription": "All api's",
+            "screenName": "ApiFlowsPage",
+            "pageObjectMethod": "apiflow"
           }
         ],
         "tags": [

@@ -1,4 +1,5 @@
 import { test as base, expect } from "@playwright/test";
+import { ApiFlowsPage } from "../pageobjects/ApiFlowsPage";
 import { CartPage } from "../pageobjects/CartPage";
 import { CheckoutCompletePage } from "../pageobjects/CheckoutCompletePage";
 import { CheckoutStepOnePage } from "../pageobjects/CheckoutStepOnePage";
@@ -7,6 +8,7 @@ import { InventoryPage } from "../pageobjects/InventoryPage";
 import { SwagLabsPage } from "../pageobjects/SwagLabsPage";
 
 type AppFixtures = {
+  apiFlowsPage: ApiFlowsPage;
   cartPage: CartPage;
   checkoutCompletePage: CheckoutCompletePage;
   checkoutStepOnePage: CheckoutStepOnePage;
@@ -16,6 +18,9 @@ type AppFixtures = {
 };
 
 export const test = base.extend<AppFixtures>({
+  apiFlowsPage: async ({ page }, use) => {
+    await use(new ApiFlowsPage(page));
+  },
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page));
   },

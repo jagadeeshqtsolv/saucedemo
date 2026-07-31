@@ -5,7 +5,7 @@
   "suiteName": "API Testing",
   "case": {
     "id": "386395d6-b446-4e19-a9c8-b9141e1f3994",
-    "title": "get user details api",
+    "title": "API Testing",
     "priority": "P1",
     "platforms": [
       "chrome"
@@ -15,9 +15,9 @@
       {
         "id": "step1",
         "action": "tap",
-        "targetDescription": "Call UserDetails.getUserDetails",
-        "screenName": "UserDetails",
-        "pageObjectMethod": "getUserDetails"
+        "targetDescription": "All api's",
+        "screenName": "ApiFlowsPage",
+        "pageObjectMethod": "apiflow"
       }
     ],
     "tags": [
