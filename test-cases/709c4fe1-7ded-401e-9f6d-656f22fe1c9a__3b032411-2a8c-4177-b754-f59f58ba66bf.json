@@ -13,18 +13,18 @@
     "preconditions": [],
     "steps": [
       {
-        "id": "step1",
-        "action": "tap",
-        "targetDescription": "Call ImportedApis.getUserDetails",
-        "screenName": "ImportedApis",
-        "pageObjectMethod": "getUserDetails"
-      },
-      {
         "id": "step2",
         "action": "tap",
         "targetDescription": "Call ImportedApis.getUserById",
         "screenName": "ImportedApis",
         "pageObjectMethod": "getUserById"
+      },
+      {
+        "id": "step1",
+        "action": "tap",
+        "targetDescription": "Call ImportedApis.getUserDetails",
+        "screenName": "ImportedApis",
+        "pageObjectMethod": "getUserDetails"
       }
     ],
     "tags": [
