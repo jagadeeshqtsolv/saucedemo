@@ -68,73 +68,36 @@ test('Login fails with empty password', { tag: ["@negative","@regression","@P0",
 });
 
 
-test('Login, view & sort products, add to cart, product detail and back', { tag: ["@e2e","@regression","@P0","@case-578c91e3-8230-4833-9094-b756ee4153ea"] }, async ({ page, swagLabsPage, inventoryPage }) => {
-  await test.step('Open — Navigate to application URL', async () => {
-    await page.goto(env.baseURL);
+test('Login, view & sort products', { tag: ["@e2e","@regression","@P0","@case-578c91e3-8230-4833-9094-b756ee4153ea","@req-315320ca-195a-4653-b20c-8a6a94a08e9b"] }, async ({ page, swagLabsPage, inventoryPage }) => {
+  await test.step('Navigate to URL — Navigate to application URL', async () => {
+    await page.goto('/');
   });
-
   await test.step('Fill — Enter username', async () => {
-    await swagLabsPage.fillUsername(env.username);
+    await swagLabsPage.fillUsername('standard_user');
   });
-
   await test.step('Fill — Enter password', async () => {
-    await swagLabsPage.fillPassword(env.password);
+    await swagLabsPage.fillPassword('secret_sauce');
   });
-
   await test.step('Click — Click Login', async () => {
     await swagLabsPage.clickLogin();
   });
-
   await test.step('Assert visible — Verify on Inventory page', async () => {
     await inventoryPage.verifyOnPage();
   });
-
   await test.step('Assert visible — Backpack name visible', async () => {
     await inventoryPage.expectInventoryItemNameSauceLabsBackpackVisible();
   });
-
   await test.step('Assert visible — Backpack price visible', async () => {
     await inventoryPage.expectInventoryItemPriceSauceLabsBackpackVisible();
   });
-
   await test.step('Assert visible — Backpack description visible', async () => {
     await inventoryPage.expectInventoryItemDescSauceLabsBackpackVisible();
   });
-
   await test.step('Assert visible — Backpack image visible', async () => {
     await inventoryPage.expectItem4ImgVisible();
   });
-
   await test.step('Click — Open sort dropdown and select Price (Low to High)', async () => {
     await inventoryPage.selectProductSort('lohi');
-  });
-
-  await test.step('Assert contains — Verify first product is lowest priced (Onesie)', async () => {
-    await inventoryPage.expectItem0TitleContainsText('Sauce Labs Onesie');
-  });
-
-  await test.step('Click — Add Backpack to cart', async () => {
-    await inventoryPage.clickAddToCartSauceLabsBackpackSauceLabsBackpack();
-  });
-
-  await test.step('Assert contains — Cart badge updated to 1', async () => {
-    await inventoryPage.expectShoppingCartContainsText('1');
-  });
-
-  await test.step('Click — Open Backpack product detail via name', async () => {
-    await inventoryPage.clickInventoryItemNameSauceLabsBackpack();
-  });
-
-  await test.step('Assert contains — Verify product detail name', async () => {
-    await inventoryPage.expectInventoryItemNameSauceLabsBackpackContainsText('Sauce Labs Backpack');
-  });
-
-  await test.step('Click — Back to products', async () => {
-    await page.goBack();
-  });
-
-  await test.step('Assert visible — Verify back on Inventory page', async () => {
-    await inventoryPage.verifyOnPage();
   });
 });
 

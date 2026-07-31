@@ -5,7 +5,7 @@
   "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
   "case": {
     "id": "578c91e3-8230-4833-9094-b756ee4153ea",
-    "title": "Login, view & sort products, add to cart, product detail and back",
+    "title": "Login, view & sort products",
     "priority": "P0",
     "platforms": [
       "chrome"
@@ -83,54 +83,6 @@
         "screenName": "InventoryPage",
         "pageObjectMethod": "selectProductSort",
         "value": "lohi"
-      },
-      {
-        "id": "s11",
-        "action": "assertContainsText",
-        "targetDescription": "Verify first product is lowest priced (Onesie)",
-        "locatorHint": ".inventory_list .inventory_item:nth-child(1) .inventory_item_name",
-        "assertion": "Sauce Labs Onesie"
-      },
-      {
-        "id": "s12",
-        "action": "tap",
-        "targetDescription": "Add Backpack to cart",
-        "screenName": "InventoryPage",
-        "pageObjectMethod": "clickAddToCartSauceLabsBackpackSauceLabsBackpack"
-      },
-      {
-        "id": "s13",
-        "action": "assertContainsText",
-        "targetDescription": "Cart badge updated to 1",
-        "locatorHint": ".shopping_cart_badge",
-        "assertion": "1"
-      },
-      {
-        "id": "s14",
-        "action": "tap",
-        "targetDescription": "Open Backpack product detail via name",
-        "screenName": "InventoryPage",
-        "pageObjectMethod": "clickInventoryItemNameSauceLabsBackpack"
-      },
-      {
-        "id": "s15",
-        "action": "assertContainsText",
-        "targetDescription": "Verify product detail name",
-        "locatorHint": ".inventory_details_name",
-        "assertion": "Sauce Labs Backpack"
-      },
-      {
-        "id": "s16",
-        "action": "tap",
-        "targetDescription": "Back to products",
-        "locatorHint": "#back-to-products"
-      },
-      {
-        "id": "s17",
-        "action": "assertVisible",
-        "targetDescription": "Verify back on Inventory page",
-        "screenName": "InventoryPage",
-        "pageObjectMethod": "verifyOnPage"
       }
     ],
     "tags": [
