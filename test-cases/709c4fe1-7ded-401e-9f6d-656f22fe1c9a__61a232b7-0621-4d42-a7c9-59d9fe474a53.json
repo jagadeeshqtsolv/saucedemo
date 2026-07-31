@@ -1,0 +1,27 @@
+{
+  "id": "61a232b7-0621-4d42-a7c9-59d9fe474a53",
+  "testPlanId": "709c4fe1-7ded-401e-9f6d-656f22fe1c9a",
+  "requirementId": "0dd15af8-b021-455e-b3e8-e6526ef4326b",
+  "suiteName": "API Testing",
+  "case": {
+    "id": "61a232b7-0621-4d42-a7c9-59d9fe474a53",
+    "title": "get user by name api",
+    "priority": "P1",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "tap",
+        "targetDescription": "Call ImportedApis.getUserByName",
+        "screenName": "ImportedApis",
+        "pageObjectMethod": "getUserByName"
+      }
+    ],
+    "tags": [
+      "api"
+    ]
+  }
+}

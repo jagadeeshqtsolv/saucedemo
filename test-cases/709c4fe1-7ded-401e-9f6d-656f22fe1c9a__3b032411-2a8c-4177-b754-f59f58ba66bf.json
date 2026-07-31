@@ -1,0 +1,34 @@
+{
+  "id": "3b032411-2a8c-4177-b754-f59f58ba66bf",
+  "testPlanId": "709c4fe1-7ded-401e-9f6d-656f22fe1c9a",
+  "requirementId": "0dd15af8-b021-455e-b3e8-e6526ef4326b",
+  "suiteName": "API Testing",
+  "case": {
+    "id": "3b032411-2a8c-4177-b754-f59f58ba66bf",
+    "title": "Imported API Testing",
+    "priority": "P1",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step2",
+        "action": "tap",
+        "targetDescription": "Call ImportedApis.getUserById",
+        "screenName": "ImportedApis",
+        "pageObjectMethod": "getUserById"
+      },
+      {
+        "id": "step1",
+        "action": "tap",
+        "targetDescription": "Call ImportedApis.getUserDetails",
+        "screenName": "ImportedApis",
+        "pageObjectMethod": "getUserDetails"
+      }
+    ],
+    "tags": [
+      "api"
+    ]
+  }
+}

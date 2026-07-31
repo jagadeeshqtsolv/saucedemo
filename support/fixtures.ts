@@ -1,26 +1,23 @@
 import { test as base, expect } from "@playwright/test";
-import { ApiFlowsPage } from "../pageobjects/ApiFlowsPage";
 import { CartPage } from "../pageobjects/CartPage";
 import { CheckoutCompletePage } from "../pageobjects/CheckoutCompletePage";
 import { CheckoutStepOnePage } from "../pageobjects/CheckoutStepOnePage";
 import { CheckoutStepTwoPage } from "../pageobjects/CheckoutStepTwoPage";
+import { ImportedApis } from "../pageobjects/ImportedApis";
 import { InventoryPage } from "../pageobjects/InventoryPage";
 import { SwagLabsPage } from "../pageobjects/SwagLabsPage";
 
 type AppFixtures = {
-  apiFlowsPage: ApiFlowsPage;
   cartPage: CartPage;
   checkoutCompletePage: CheckoutCompletePage;
   checkoutStepOnePage: CheckoutStepOnePage;
   checkoutStepTwoPage: CheckoutStepTwoPage;
+  importedApis: ImportedApis;
   inventoryPage: InventoryPage;
   swagLabsPage: SwagLabsPage;
 };
 
 export const test = base.extend<AppFixtures>({
-  apiFlowsPage: async ({ page }, use) => {
-    await use(new ApiFlowsPage(page));
-  },
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page));
   },
@@ -32,6 +29,9 @@ export const test = base.extend<AppFixtures>({
   },
   checkoutStepTwoPage: async ({ page }, use) => {
     await use(new CheckoutStepTwoPage(page));
+  },
+  importedApis: async ({ page }, use) => {
+    await use(new ImportedApis(page));
   },
   inventoryPage: async ({ page }, use) => {
     await use(new InventoryPage(page));
