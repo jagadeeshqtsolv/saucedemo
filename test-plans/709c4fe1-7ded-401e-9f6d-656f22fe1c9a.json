@@ -34,6 +34,27 @@
         "tags": [
           "api"
         ]
+      },
+      {
+        "id": "cc232fea-398f-4d03-9437-8245b5cd77c8",
+        "title": "Perform login with api",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "tap",
+            "targetDescription": "Call ImportedApis.login",
+            "screenName": "ImportedApis",
+            "pageObjectMethod": "login"
+          }
+        ],
+        "tags": [
+          "api"
+        ]
       }
     ]
   }
