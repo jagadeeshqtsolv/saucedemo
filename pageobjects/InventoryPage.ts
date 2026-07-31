@@ -68,7 +68,7 @@ export class InventoryPage {
     addToCartSauceLabsOnesieSauceLabsBackpack: { strategy: 'css' as const, value: '[data-test="add-to-cart-sauce-labs-onesie"]', role: 'button', scope: '[data-test="inventory-container"]', scopeText: 'Sauce Labs Backpack', actionKind: 'button' as const },
     item3Img: { strategy: 'css' as const, value: '[data-test="item-3-img-link"]', role: 'link', actionKind: 'link' as const },
     item3Title: { strategy: 'css' as const, value: '[data-test="item-3-title-link"]', role: 'link', actionKind: 'link' as const },
-    addToCartTest.allthethings()TShirt(red): { strategy: 'css' as const, value: '[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]', role: 'button', actionKind: 'button' as const },
+    addToCartTestAllthethingsTShirtRed: { strategy: 'css' as const, value: '[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]', role: 'button', actionKind: 'button' as const },
     footer: { strategy: 'css' as const, value: '[data-test="footer"]', actionKind: 'text' as const },
     socialTwitter: { strategy: 'css' as const, value: '[data-test="social-twitter"]', role: 'link', actionKind: 'link' as const },
     socialFacebook: { strategy: 'css' as const, value: '[data-test="social-facebook"]', role: 'link', actionKind: 'link' as const },
@@ -311,16 +311,16 @@ export class InventoryPage {
     await expectVisible(webLocator(this.page, InventoryPage.L.item3Title), timeoutMs, soft);
   }
 
-  async clickAddToCartTest.allthethings()TShirt(red)(): Promise<void> {
-    await clickWhenVisible(webLocator(this.page, InventoryPage.L.addToCartTest.allthethings()TShirt(red)));
+  async clickAddToCartTestAllthethingsTShirtRed(): Promise<void> {
+    await clickWhenVisible(webLocator(this.page, InventoryPage.L.addToCartTestAllthethingsTShirtRed));
   }
 
-  async doubleClickAddToCartTest.allthethings()TShirt(red)(): Promise<void> {
-    await doubleClickWhenVisible(webLocator(this.page, InventoryPage.L.addToCartTest.allthethings()TShirt(red)));
+  async doubleClickAddToCartTestAllthethingsTShirtRed(): Promise<void> {
+    await doubleClickWhenVisible(webLocator(this.page, InventoryPage.L.addToCartTestAllthethingsTShirtRed));
   }
 
-  async expectAddToCartTest.allthethings()TShirt(red)Visible(timeoutMs = 30_000, soft = true): Promise<void> {
-    await expectVisible(webLocator(this.page, InventoryPage.L.addToCartTest.allthethings()TShirt(red)), timeoutMs, soft);
+  async expectAddToCartTestAllthethingsTShirtRedVisible(timeoutMs = 30_000, soft = true): Promise<void> {
+    await expectVisible(webLocator(this.page, InventoryPage.L.addToCartTestAllthethingsTShirtRed), timeoutMs, soft);
   }
 
   async getInnerTextFooter(): Promise<string> {

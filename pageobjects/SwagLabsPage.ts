@@ -518,4 +518,8 @@ export class SwagLabsPage {
     await scrollIntoViewWhenVisible(webLocator(this.page, SwagLabsPage.L.passwordForAllUsers));
   }
 
+  async expectErrorContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
+    await expectContainsText(webLocator(this.page, SwagLabsPage.L.loginCredentials), substring, timeoutMs);
+  }
+
 }
