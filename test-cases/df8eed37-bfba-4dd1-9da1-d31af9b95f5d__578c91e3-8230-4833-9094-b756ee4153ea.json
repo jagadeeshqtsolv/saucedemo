@@ -1,0 +1,93 @@
+{
+  "id": "578c91e3-8230-4833-9094-b756ee4153ea",
+  "testPlanId": "df8eed37-bfba-4dd1-9da1-d31af9b95f5d",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
+  "case": {
+    "id": "578c91e3-8230-4833-9094-b756ee4153ea",
+    "title": "Login, view & sort products",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "s1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to application URL",
+        "value": "https://www.saucedemo.com/"
+      },
+      {
+        "id": "s2",
+        "action": "fill",
+        "targetDescription": "Enter username",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillUsername",
+        "value": "standard_user"
+      },
+      {
+        "id": "s3",
+        "action": "fill",
+        "targetDescription": "Enter password",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillPassword",
+        "value": "secret_sauce"
+      },
+      {
+        "id": "s4",
+        "action": "tap",
+        "targetDescription": "Click Login",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "clickLogin"
+      },
+      {
+        "id": "s5",
+        "action": "assertVisible",
+        "targetDescription": "Verify on Inventory page",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "verifyOnPage"
+      },
+      {
+        "id": "s6",
+        "action": "assertVisible",
+        "targetDescription": "Backpack name visible",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "expectInventoryItemNameSauceLabsBackpackVisible"
+      },
+      {
+        "id": "s7",
+        "action": "assertVisible",
+        "targetDescription": "Backpack price visible",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "expectInventoryItemPriceSauceLabsBackpackVisible"
+      },
+      {
+        "id": "s8",
+        "action": "assertVisible",
+        "targetDescription": "Backpack description visible",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "expectInventoryItemDescSauceLabsBackpackVisible"
+      },
+      {
+        "id": "s9",
+        "action": "assertVisible",
+        "targetDescription": "Backpack image visible",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "expectItem4ImgVisible"
+      },
+      {
+        "id": "s10",
+        "action": "tap",
+        "targetDescription": "Open sort dropdown and select Price (Low to High)",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "selectProductSort",
+        "value": "lohi"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "cc8c3e74-645c-429a-93ce-d3a9e633feeb",
+  "testPlanId": "df8eed37-bfba-4dd1-9da1-d31af9b95f5d",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
+  "case": {
+    "id": "cc8c3e74-645c-429a-93ce-d3a9e633feeb",
+    "title": "Login fails with empty password",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "s1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to application URL",
+        "value": "https://www.saucedemo.com/"
+      },
+      {
+        "id": "s2",
+        "action": "fill",
+        "targetDescription": "Enter username only",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillUsername",
+        "value": "standard_user"
+      },
+      {
+        "id": "s3",
+        "action": "tap",
+        "targetDescription": "Click Login",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "clickLogin"
+      },
+      {
+        "id": "s4",
+        "action": "assertContainsText",
+        "targetDescription": "Error message for missing password",
+        "locatorHint": "[data-test='error']",
+        "assertion": "Password is required"
+      }
+    ],
+    "tags": [
+      "@negative",
+      "@regression"
+    ]
+  }
+}

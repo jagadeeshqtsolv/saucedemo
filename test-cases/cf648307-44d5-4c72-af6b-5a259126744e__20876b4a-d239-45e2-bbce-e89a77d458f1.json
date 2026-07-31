@@ -1,0 +1,48 @@
+{
+  "id": "20876b4a-d239-45e2-bbce-e89a77d458f1",
+  "testPlanId": "cf648307-44d5-4c72-af6b-5a259126744e",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "suiteName": "Data driven",
+  "case": {
+    "id": "20876b4a-d239-45e2-bbce-e89a77d458f1",
+    "title": "Data driven",
+    "priority": "P1",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "launch sauce demo",
+        "value": "https://www.saucedemo.com/"
+      },
+      {
+        "id": "step2",
+        "action": "tap",
+        "targetDescription": "Fill username",
+        "screenName": "SwagLabs",
+        "pageObjectMethod": "fillUsername",
+        "value": "{{dataset.username}}"
+      },
+      {
+        "id": "step3",
+        "action": "tap",
+        "targetDescription": "Fill password",
+        "screenName": "SwagLabs",
+        "pageObjectMethod": "fillPassword",
+        "value": "{{dataset.password}}"
+      },
+      {
+        "id": "step4",
+        "action": "tap",
+        "targetDescription": "click login",
+        "screenName": "SwagLabs",
+        "pageObjectMethod": "clickLogin"
+      }
+    ],
+    "tags": [],
+    "dataSetId": "dfdfd767-8911-4b8b-92dd-b81079e1e860"
+  }
+}

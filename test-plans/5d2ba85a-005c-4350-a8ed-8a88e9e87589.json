@@ -1,0 +1,33 @@
+{
+  "id": "5d2ba85a-005c-4350-a8ed-8a88e9e87589",
+  "requirementId": "0dd15af8-b021-455e-b3e8-e6526ef4326b",
+  "model": "manual",
+  "createdAt": "2026-07-31T04:07:06.775Z",
+  "plan": {
+    "version": 1,
+    "suiteName": "API Testing",
+    "cases": [
+      {
+        "id": "386395d6-b446-4e19-a9c8-b9141e1f3994",
+        "title": "API Testing",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "tap",
+            "targetDescription": "All api's",
+            "screenName": "ApiFlowsPage",
+            "pageObjectMethod": "apiflow"
+          }
+        ],
+        "tags": [
+          "api"
+        ]
+      }
+    ]
+  }
+}

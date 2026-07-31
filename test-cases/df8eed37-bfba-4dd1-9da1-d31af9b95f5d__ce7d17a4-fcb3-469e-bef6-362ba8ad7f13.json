@@ -1,0 +1,77 @@
+{
+  "id": "ce7d17a4-fcb3-469e-bef6-362ba8ad7f13",
+  "testPlanId": "df8eed37-bfba-4dd1-9da1-d31af9b95f5d",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
+  "case": {
+    "id": "ce7d17a4-fcb3-469e-bef6-362ba8ad7f13",
+    "title": "Navigate to product detail via image and back to listing",
+    "priority": "P2",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "s1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to application URL",
+        "value": "https://www.saucedemo.com/"
+      },
+      {
+        "id": "s2",
+        "action": "fill",
+        "targetDescription": "Enter username",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillUsername",
+        "value": "standard_user"
+      },
+      {
+        "id": "s3",
+        "action": "fill",
+        "targetDescription": "Enter password",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillPassword",
+        "value": "secret_sauce"
+      },
+      {
+        "id": "s4",
+        "action": "tap",
+        "targetDescription": "Click Login",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "clickLogin"
+      },
+      {
+        "id": "s5",
+        "action": "tap",
+        "targetDescription": "Open Backpack detail via image",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "clickItem4Img"
+      },
+      {
+        "id": "s6",
+        "action": "assertContainsText",
+        "targetDescription": "Verify product detail name",
+        "locatorHint": ".inventory_details_name",
+        "assertion": "Sauce Labs Backpack"
+      },
+      {
+        "id": "s7",
+        "action": "tap",
+        "targetDescription": "Back to products",
+        "locatorHint": "#back-to-products"
+      },
+      {
+        "id": "s8",
+        "action": "assertVisible",
+        "targetDescription": "Verify back on Inventory page",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "verifyOnPage"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression"
+    ]
+  }
+}
