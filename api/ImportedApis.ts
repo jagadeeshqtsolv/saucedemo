@@ -22,7 +22,7 @@ export class ImportedApis {
     headers["Authorization"] = resolveTemplate("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3NzY3Njk0OTUsImV4cCI6MTc3Njc3MTI5NX0.e8LT0KQzqQ-MqBfukmkzmwQjKOIGGHKsUL9Qyg2dtcM", vars, env);
     const res = await request.get(url.toString(), { headers });
     const body: unknown = await res.json().catch(() => null);
-    assertStatus(res.status(), [401], "GET", url.toString(), body);
+    assertStatus(res.status(), [200], "GET", url.toString(), body);
     return {};
   }
 

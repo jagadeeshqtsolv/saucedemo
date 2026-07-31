@@ -34,6 +34,27 @@
         "tags": [
           "api"
         ]
+      },
+      {
+        "id": "61a232b7-0621-4d42-a7c9-59d9fe474a53",
+        "title": "get user by name api",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step1",
+            "action": "tap",
+            "targetDescription": "Call ImportedApis.getUserByName",
+            "screenName": "ImportedApis",
+            "pageObjectMethod": "getUserByName"
+          }
+        ],
+        "tags": [
+          "api"
+        ]
       }
     ]
   }
