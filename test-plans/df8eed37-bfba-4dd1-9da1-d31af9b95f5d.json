@@ -1,0 +1,1009 @@
+{
+  "id": "df8eed37-bfba-4dd1-9da1-d31af9b95f5d",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "model": "gpt-5",
+  "createdAt": "2026-07-31T03:16:14.270Z",
+  "plan": {
+    "version": 1,
+    "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
+    "cases": [
+      {
+        "id": "578c91e3-8230-4833-9094-b756ee4153ea",
+        "title": "Login, view & sort products, add to cart, product detail and back",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "assertVisible",
+            "targetDescription": "Verify on Inventory page",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "verifyOnPage"
+          },
+          {
+            "id": "s6",
+            "action": "assertVisible",
+            "targetDescription": "Backpack name visible",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectInventoryItemNameSauceLabsBackpackVisible"
+          },
+          {
+            "id": "s7",
+            "action": "assertVisible",
+            "targetDescription": "Backpack price visible",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectInventoryItemPriceSauceLabsBackpackVisible"
+          },
+          {
+            "id": "s8",
+            "action": "assertVisible",
+            "targetDescription": "Backpack description visible",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectInventoryItemDescSauceLabsBackpackVisible"
+          },
+          {
+            "id": "s9",
+            "action": "assertVisible",
+            "targetDescription": "Backpack image visible",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectItem4ImgVisible"
+          },
+          {
+            "id": "s10",
+            "action": "tap",
+            "targetDescription": "Open sort dropdown and select Price (Low to High)",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "selectProductSort",
+            "value": "lohi"
+          },
+          {
+            "id": "s11",
+            "action": "assertContainsText",
+            "targetDescription": "Verify first product is lowest priced (Onesie)",
+            "locatorHint": ".inventory_list .inventory_item:nth-child(1) .inventory_item_name",
+            "assertion": "Sauce Labs Onesie"
+          },
+          {
+            "id": "s12",
+            "action": "tap",
+            "targetDescription": "Add Backpack to cart",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickAddToCartSauceLabsBackpackSauceLabsBackpack"
+          },
+          {
+            "id": "s13",
+            "action": "assertContainsText",
+            "targetDescription": "Cart badge updated to 1",
+            "locatorHint": ".shopping_cart_badge",
+            "assertion": "1"
+          },
+          {
+            "id": "s14",
+            "action": "tap",
+            "targetDescription": "Open Backpack product detail via name",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickInventoryItemNameSauceLabsBackpack"
+          },
+          {
+            "id": "s15",
+            "action": "assertContainsText",
+            "targetDescription": "Verify product detail name",
+            "locatorHint": ".inventory_details_name",
+            "assertion": "Sauce Labs Backpack"
+          },
+          {
+            "id": "s16",
+            "action": "tap",
+            "targetDescription": "Back to products",
+            "locatorHint": "#back-to-products"
+          },
+          {
+            "id": "s17",
+            "action": "assertVisible",
+            "targetDescription": "Verify back on Inventory page",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "verifyOnPage"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression"
+        ]
+      },
+      {
+        "id": "1faa1002-4538-4336-9c9b-ad096aaa278b",
+        "title": "Add two items from listing and complete checkout",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "assertVisible",
+            "targetDescription": "Verify on Inventory page",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "verifyOnPage"
+          },
+          {
+            "id": "s6",
+            "action": "tap",
+            "targetDescription": "Add Backpack to cart",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickAddToCartSauceLabsBackpackSauceLabsBackpack"
+          },
+          {
+            "id": "s7",
+            "action": "tap",
+            "targetDescription": "Add Bike Light to cart",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickAddToCartSauceLabsBikeLightSauceLabsBackpack"
+          },
+          {
+            "id": "s8",
+            "action": "assertContainsText",
+            "targetDescription": "Cart badge shows 2",
+            "locatorHint": ".shopping_cart_badge",
+            "assertion": "2"
+          },
+          {
+            "id": "s9",
+            "action": "tap",
+            "targetDescription": "Open Cart",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickShoppingCart"
+          },
+          {
+            "id": "s10",
+            "action": "assertCount",
+            "targetDescription": "Verify 2 cart items",
+            "locatorHint": ".cart_item"
+          },
+          {
+            "id": "s11",
+            "action": "tap",
+            "targetDescription": "Click Checkout",
+            "screenName": "CartPage",
+            "pageObjectMethod": "clickCheckoutSauceLabsBackpack"
+          },
+          {
+            "id": "s12",
+            "action": "fill",
+            "targetDescription": "Fill First Name",
+            "screenName": "CheckoutStepOnePage",
+            "pageObjectMethod": "fillFirstname",
+            "value": "Jane"
+          },
+          {
+            "id": "s13",
+            "action": "fill",
+            "targetDescription": "Fill Last Name",
+            "screenName": "CheckoutStepOnePage",
+            "pageObjectMethod": "fillLastname",
+            "value": "Doe"
+          },
+          {
+            "id": "s14",
+            "action": "fill",
+            "targetDescription": "Fill Postal Code",
+            "screenName": "CheckoutStepOnePage",
+            "pageObjectMethod": "fillPostalcode",
+            "value": "12345"
+          },
+          {
+            "id": "s15",
+            "action": "tap",
+            "targetDescription": "Continue to Overview",
+            "screenName": "CheckoutStepOnePage",
+            "pageObjectMethod": "clickContinue"
+          },
+          {
+            "id": "s16",
+            "action": "assertVisible",
+            "targetDescription": "Verify Overview labels visible",
+            "screenName": "CheckoutStepTwoPage",
+            "pageObjectMethod": "expectSubtotalLabelVisible"
+          },
+          {
+            "id": "s17",
+            "action": "tap",
+            "targetDescription": "Finish",
+            "screenName": "CheckoutStepTwoPage",
+            "pageObjectMethod": "clickFinishSauceLabsBackpack"
+          },
+          {
+            "id": "s18",
+            "action": "assertVisible",
+            "targetDescription": "Verify complete header visible",
+            "screenName": "CheckoutCompletePage",
+            "pageObjectMethod": "expectCompleteHeaderVisible"
+          },
+          {
+            "id": "s19",
+            "action": "tap",
+            "targetDescription": "Back to Products",
+            "screenName": "CheckoutCompletePage",
+            "pageObjectMethod": "clickBackToProducts"
+          },
+          {
+            "id": "s20",
+            "action": "assertVisible",
+            "targetDescription": "Verify back on Inventory page",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "verifyOnPage"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression"
+        ]
+      },
+      {
+        "id": "f66a4221-d712-48d6-8f04-0958d465bc93",
+        "title": "Add then remove from listing; cart badge updates accordingly",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Add Backpack to cart",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickAddToCartSauceLabsBackpackSauceLabsBackpack"
+          },
+          {
+            "id": "s6",
+            "action": "assertContainsText",
+            "targetDescription": "Cart badge shows 1",
+            "locatorHint": ".shopping_cart_badge",
+            "assertion": "1"
+          },
+          {
+            "id": "s7",
+            "action": "tap",
+            "targetDescription": "Remove Backpack from cart (from listing)",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickRemoveSauceLabsBackpackSauceLabsBackpack"
+          },
+          {
+            "id": "s8",
+            "action": "assertHidden",
+            "targetDescription": "Cart badge removed",
+            "locatorHint": ".shopping_cart_badge"
+          },
+          {
+            "id": "s9",
+            "action": "assertVisible",
+            "targetDescription": "Add to cart button visible again for Backpack",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectAddToCartSauceLabsBackpackSauceLabsBackpackVisible"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression"
+        ]
+      },
+      {
+        "id": "ce7d17a4-fcb3-469e-bef6-362ba8ad7f13",
+        "title": "Navigate to product detail via image and back to listing",
+        "priority": "P2",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Open Backpack detail via image",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickItem4Img"
+          },
+          {
+            "id": "s6",
+            "action": "assertContainsText",
+            "targetDescription": "Verify product detail name",
+            "locatorHint": ".inventory_details_name",
+            "assertion": "Sauce Labs Backpack"
+          },
+          {
+            "id": "s7",
+            "action": "tap",
+            "targetDescription": "Back to products",
+            "locatorHint": "#back-to-products"
+          },
+          {
+            "id": "s8",
+            "action": "assertVisible",
+            "targetDescription": "Verify back on Inventory page",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "verifyOnPage"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression"
+        ]
+      },
+      {
+        "id": "4cc4f97e-16e7-43ca-8c6a-2300e38a3d36",
+        "title": "Login fails with invalid password",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter valid username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter invalid password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "wrong_password"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "assertContainsText",
+            "targetDescription": "Error message for invalid credentials",
+            "locatorHint": "[data-test='error']",
+            "assertion": "do not match any user"
+          },
+          {
+            "id": "s6",
+            "action": "assertVisible",
+            "targetDescription": "Login button still visible (no redirect)",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "expectLoginVisible"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "25b64d82-5005-4bc5-be81-16ad5bef7762",
+        "title": "Login fails with empty username",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter password only",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s3",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s4",
+            "action": "assertContainsText",
+            "targetDescription": "Error message for missing username",
+            "locatorHint": "[data-test='error']",
+            "assertion": "Username is required"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "cc8c3e74-645c-429a-93ce-d3a9e633feeb",
+        "title": "Login fails with empty password",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username only",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s4",
+            "action": "assertContainsText",
+            "targetDescription": "Error message for missing password",
+            "locatorHint": "[data-test='error']",
+            "assertion": "Password is required"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "196d67e1-d407-40aa-abb5-dd9990d7224c",
+        "title": "Login fails with both fields empty",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "tap",
+            "targetDescription": "Click Login without credentials",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s3",
+            "action": "assertContainsText",
+            "targetDescription": "Error message for missing username",
+            "locatorHint": "[data-test='error']",
+            "assertion": "Username is required"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "caffd4ed-f179-4d6d-9062-00328d1539c1",
+        "title": "Unauthorized access to inventory redirects to login",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Directly open Inventory page without login",
+            "value": "https://www.saucedemo.com/inventory.html"
+          },
+          {
+            "id": "s2",
+            "action": "assertVisible",
+            "targetDescription": "Username field visible on login page",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "expectUsernameVisible"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "dce9f74a-2d39-4a0c-95be-eb1bbb26f21d",
+        "title": "Invalid sort option is ignored; active option remains default",
+        "priority": "P2",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "assertContainsText",
+            "targetDescription": "Default active sort is Name (A to Z)",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectActiveOptionContainsText",
+            "assertion": "Name (A to Z)"
+          },
+          {
+            "id": "s6",
+            "action": "selectOption",
+            "targetDescription": "Attempt to select invalid sort option",
+            "locatorHint": "[data-test='product_sort_container']",
+            "value": "invalid_option"
+          },
+          {
+            "id": "s7",
+            "action": "assertContainsText",
+            "targetDescription": "Active sort remains default after invalid selection",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectActiveOptionContainsText",
+            "assertion": "Name (A to Z)"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "de92261b-f955-4e6d-b922-8e75e433f488",
+        "title": "Remove button not visible when product not in cart",
+        "priority": "P2",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "assertHidden",
+            "targetDescription": "Remove button hidden for Backpack when not added",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectRemoveSauceLabsBackpackSauceLabsBackpackHidden"
+          },
+          {
+            "id": "s6",
+            "action": "assertVisible",
+            "targetDescription": "Add to cart button visible for Backpack",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "expectAddToCartSauceLabsBackpackSauceLabsBackpackVisible"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "8d7b0231-0ca9-4444-9149-95eab6451994",
+        "title": "Double-click Add to Cart does not duplicate count",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "doubleTap",
+            "targetDescription": "Double-click Add to Cart for Backpack",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "doubleClickAddToCartSauceLabsBackpackSauceLabsBackpack"
+          },
+          {
+            "id": "s6",
+            "action": "assertContainsText",
+            "targetDescription": "Cart badge remains 1",
+            "locatorHint": ".shopping_cart_badge",
+            "assertion": "1"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "aa5116e1-1740-42f6-8707-8242423a5b96",
+        "title": "Login fails with XSS attempt in username",
+        "priority": "P2",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter XSS payload as username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "<script>alert(1)</script>"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter any password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "anything"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "assertContainsText",
+            "targetDescription": "Error message for invalid credentials",
+            "locatorHint": "[data-test='error']",
+            "assertion": "do not match any user"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "88e7280d-8eb0-4f22-bc49-c1e1cf045993",
+        "title": "Login fails with excessively long username",
+        "priority": "P2",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter very long username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "assertContainsText",
+            "targetDescription": "Error message for invalid credentials",
+            "locatorHint": "[data-test='error']",
+            "assertion": "do not match any user"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      },
+      {
+        "id": "f36e30aa-b9ff-4556-b44c-84cc2ff37b3a",
+        "title": "Cart shows zero items and badge hidden when empty",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to application URL",
+            "value": "https://www.saucedemo.com/"
+          },
+          {
+            "id": "s2",
+            "action": "fill",
+            "targetDescription": "Enter username",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillUsername",
+            "value": "standard_user"
+          },
+          {
+            "id": "s3",
+            "action": "fill",
+            "targetDescription": "Enter password",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "fillPassword",
+            "value": "secret_sauce"
+          },
+          {
+            "id": "s4",
+            "action": "tap",
+            "targetDescription": "Click Login",
+            "screenName": "SwagLabsPage",
+            "pageObjectMethod": "clickLogin"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Open Cart without adding items",
+            "screenName": "InventoryPage",
+            "pageObjectMethod": "clickShoppingCart"
+          },
+          {
+            "id": "s6",
+            "action": "assertCount",
+            "targetDescription": "No cart items present",
+            "locatorHint": ".cart_item"
+          },
+          {
+            "id": "s7",
+            "action": "assertHidden",
+            "targetDescription": "Cart badge not visible",
+            "locatorHint": ".shopping_cart_badge"
+          }
+        ],
+        "tags": [
+          "@negative",
+          "@regression"
+        ]
+      }
+    ]
+  }
+}

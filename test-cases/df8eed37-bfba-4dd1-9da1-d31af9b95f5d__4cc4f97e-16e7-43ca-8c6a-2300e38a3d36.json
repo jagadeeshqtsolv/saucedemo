@@ -1,0 +1,64 @@
+{
+  "id": "4cc4f97e-16e7-43ca-8c6a-2300e38a3d36",
+  "testPlanId": "df8eed37-bfba-4dd1-9da1-d31af9b95f5d",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
+  "case": {
+    "id": "4cc4f97e-16e7-43ca-8c6a-2300e38a3d36",
+    "title": "Login fails with invalid password",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "s1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to application URL",
+        "value": "https://www.saucedemo.com/"
+      },
+      {
+        "id": "s2",
+        "action": "fill",
+        "targetDescription": "Enter valid username",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillUsername",
+        "value": "standard_user"
+      },
+      {
+        "id": "s3",
+        "action": "fill",
+        "targetDescription": "Enter invalid password",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillPassword",
+        "value": "wrong_password"
+      },
+      {
+        "id": "s4",
+        "action": "tap",
+        "targetDescription": "Click Login",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "clickLogin"
+      },
+      {
+        "id": "s5",
+        "action": "assertContainsText",
+        "targetDescription": "Error message for invalid credentials",
+        "locatorHint": "[data-test='error']",
+        "assertion": "do not match any user"
+      },
+      {
+        "id": "s6",
+        "action": "assertVisible",
+        "targetDescription": "Login button still visible (no redirect)",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "expectLoginVisible"
+      }
+    ],
+    "tags": [
+      "@negative",
+      "@regression"
+    ]
+  }
+}

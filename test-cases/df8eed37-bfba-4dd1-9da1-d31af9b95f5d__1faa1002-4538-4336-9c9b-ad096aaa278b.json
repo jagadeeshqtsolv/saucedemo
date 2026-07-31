@@ -1,0 +1,164 @@
+{
+  "id": "1faa1002-4538-4336-9c9b-ad096aaa278b",
+  "testPlanId": "df8eed37-bfba-4dd1-9da1-d31af9b95f5d",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
+  "case": {
+    "id": "1faa1002-4538-4336-9c9b-ad096aaa278b",
+    "title": "Add two items from listing and complete checkout",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "s1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to application URL",
+        "value": "https://www.saucedemo.com/"
+      },
+      {
+        "id": "s2",
+        "action": "fill",
+        "targetDescription": "Enter username",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillUsername",
+        "value": "standard_user"
+      },
+      {
+        "id": "s3",
+        "action": "fill",
+        "targetDescription": "Enter password",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillPassword",
+        "value": "secret_sauce"
+      },
+      {
+        "id": "s4",
+        "action": "tap",
+        "targetDescription": "Click Login",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "clickLogin"
+      },
+      {
+        "id": "s5",
+        "action": "assertVisible",
+        "targetDescription": "Verify on Inventory page",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "verifyOnPage"
+      },
+      {
+        "id": "s6",
+        "action": "tap",
+        "targetDescription": "Add Backpack to cart",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "clickAddToCartSauceLabsBackpackSauceLabsBackpack"
+      },
+      {
+        "id": "s7",
+        "action": "tap",
+        "targetDescription": "Add Bike Light to cart",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "clickAddToCartSauceLabsBikeLightSauceLabsBackpack"
+      },
+      {
+        "id": "s8",
+        "action": "assertContainsText",
+        "targetDescription": "Cart badge shows 2",
+        "locatorHint": ".shopping_cart_badge",
+        "assertion": "2"
+      },
+      {
+        "id": "s9",
+        "action": "tap",
+        "targetDescription": "Open Cart",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "clickShoppingCart"
+      },
+      {
+        "id": "s10",
+        "action": "assertCount",
+        "targetDescription": "Verify 2 cart items",
+        "locatorHint": ".cart_item"
+      },
+      {
+        "id": "s11",
+        "action": "tap",
+        "targetDescription": "Click Checkout",
+        "screenName": "CartPage",
+        "pageObjectMethod": "clickCheckoutSauceLabsBackpack"
+      },
+      {
+        "id": "s12",
+        "action": "fill",
+        "targetDescription": "Fill First Name",
+        "screenName": "CheckoutStepOnePage",
+        "pageObjectMethod": "fillFirstname",
+        "value": "Jane"
+      },
+      {
+        "id": "s13",
+        "action": "fill",
+        "targetDescription": "Fill Last Name",
+        "screenName": "CheckoutStepOnePage",
+        "pageObjectMethod": "fillLastname",
+        "value": "Doe"
+      },
+      {
+        "id": "s14",
+        "action": "fill",
+        "targetDescription": "Fill Postal Code",
+        "screenName": "CheckoutStepOnePage",
+        "pageObjectMethod": "fillPostalcode",
+        "value": "12345"
+      },
+      {
+        "id": "s15",
+        "action": "tap",
+        "targetDescription": "Continue to Overview",
+        "screenName": "CheckoutStepOnePage",
+        "pageObjectMethod": "clickContinue"
+      },
+      {
+        "id": "s16",
+        "action": "assertVisible",
+        "targetDescription": "Verify Overview labels visible",
+        "screenName": "CheckoutStepTwoPage",
+        "pageObjectMethod": "expectSubtotalLabelVisible"
+      },
+      {
+        "id": "s17",
+        "action": "tap",
+        "targetDescription": "Finish",
+        "screenName": "CheckoutStepTwoPage",
+        "pageObjectMethod": "clickFinishSauceLabsBackpack"
+      },
+      {
+        "id": "s18",
+        "action": "assertVisible",
+        "targetDescription": "Verify complete header visible",
+        "screenName": "CheckoutCompletePage",
+        "pageObjectMethod": "expectCompleteHeaderVisible"
+      },
+      {
+        "id": "s19",
+        "action": "tap",
+        "targetDescription": "Back to Products",
+        "screenName": "CheckoutCompletePage",
+        "pageObjectMethod": "clickBackToProducts"
+      },
+      {
+        "id": "s20",
+        "action": "assertVisible",
+        "targetDescription": "Verify back on Inventory page",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "verifyOnPage"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression"
+    ]
+  }
+}

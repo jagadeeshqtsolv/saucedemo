@@ -1,1 +1,56 @@
-{}
+{
+  "loginViewSortProductsAddToCartProductDetailAndBack": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce"
+  },
+  "addTwoItemsFromListingAndCompleteCheckout": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce",
+    "fillFirstName": "Jane",
+    "fillLastName": "Doe",
+    "fillPostalCode": "12345"
+  },
+  "addThenRemoveFromListingCartBadgeUpdatesAccordingly": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce"
+  },
+  "navigateToProductDetailViaImageAndBackToListing": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce"
+  },
+  "loginFailsWithInvalidPassword": {
+    "enterValidUsername": "standard_user",
+    "enterInvalidPassword": "wrong_password"
+  },
+  "loginFailsWithEmptyUsername": {
+    "enterPasswordOnly": "secret_sauce"
+  },
+  "loginFailsWithEmptyPassword": {
+    "enterUsernameOnly": "standard_user"
+  },
+  "invalidSortOptionIsIgnoredActiveOptionRemainsDefault": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce",
+    "attemptToSelectInvalidSortOption": "invalid_option"
+  },
+  "removeButtonNotVisibleWhenProductNotInCart": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce"
+  },
+  "doubleClickAddToCartDoesNotDuplicateCount": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce"
+  },
+  "loginFailsWithXssAttemptInUsername": {
+    "enterXssPayloadAsUsername": "<script>alert(1)</script>",
+    "enterAnyPassword": "anything"
+  },
+  "loginFailsWithExcessivelyLongUsername": {
+    "enterVeryLongUsername": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "enterPassword": "secret_sauce"
+  },
+  "cartShowsZeroItemsAndBadgeHiddenWhenEmpty": {
+    "enterUsername": "standard_user",
+    "enterPassword": "secret_sauce"
+  }
+}
