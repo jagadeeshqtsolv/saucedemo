@@ -1,8 +1,8 @@
 # .github/workflows/run-tests.yml
-# Triggered by Autonix via workflow_dispatch.
+# Triggered by AutonixQ via workflow_dispatch.
 # Requires: Node.js, npm, and test dependencies installed.
 name: run-tests
-
+ 
 on:
   workflow_dispatch:
     inputs:
@@ -23,23 +23,31 @@ on:
         required: false
         default: ""
       callback_url:
-        description: "Autonix webhook URL to post results back"
+        description: "AutonixQ webhook URL to post results back"
         required: true
       run_id:
-        description: "Autonix run ID"
+        description: "AutonixQ run ID"
         required: true
-      auth_state_url:
-        description: "URL to fetch Playwright storageState JSON (auth file)"
+      workers:
+        description: "Number of parallel workers (blank = playwright.config.ts default)"
         required: false
         default: ""
-      auth_state_filename:
-        description: "Filename to write inside .auth/ (e.g. auth.json)"
+      retries:
+        description: "Retry count for failed tests (blank = playwright.config.ts default)"
         required: false
         default: ""
-
+      fully_parallel:
+        description: 'Set to "true" to run with --fully-parallel'
+        required: false
+        default: ""
+      browser:
+        description: "Browser/project to run (chromium, firefox, webkit)"
+        required: false
+        default: ""
+ 
 permissions:
   contents: read
-
+ 
 jobs:
   run-tests:
     runs-on: ubuntu-latest
@@ -49,44 +57,57 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.branch || github.ref }}
-
+ 
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-
-      - name: Configure Autonix registry
+ 
+      - name: Configure AutonixQ registry
         run: |
           npm config set @autonix:registry https://artifact-keeper.qtsolvdev.com/npm/qa-automation-libraries/
           npm config set "//artifact-keeper.qtsolvdev.com/npm/qa-automation-libraries/:_authToken" "$AUTONIX_REGISTRY_TOKEN"
-
+ 
       - name: Install dependencies
         run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
-
-      - name: Write auth state
-        if: ${{ inputs.auth_state_url != '' && inputs.auth_state_filename != '' }}
+ 
+      - name: Install Playwright browser
+        env:
+          BROWSER: ${{ inputs.browser }}
+          ENVIRONMENT: ${{ inputs.environment }}
         run: |
-          mkdir -p .auth
-          RESPONSE=$(curl -sf "${{ inputs.auth_state_url }}")
-          echo "$RESPONSE" | jq -r '.content' > ".auth/${{ inputs.auth_state_filename }}"
-
-      - run: npx playwright install --with-deps chromium
-
+          BROWSER_TO_INSTALL="${BROWSER:-}"
+          if [ -z "$BROWSER_TO_INSTALL" ]; then
+            BROWSER_TO_INSTALL=$(node -e "try{console.log(require('./environments/${ENVIRONMENT:-qa}.json').browser||'chromium')}catch(e){console.log('chromium')}" 2>/dev/null || echo chromium)
+          fi
+          npx playwright install --with-deps "$BROWSER_TO_INSTALL"
+ 
       - name: Run tests
         env:
           AUTOM_ENVIRONMENT: ${{ inputs.environment }}
           TEST_ENV: ${{ inputs.environment }}
-
+ 
         run: |
           SPEC_PATHS_ARG="${{ inputs.spec_paths }}"
           GREP_PATTERN="${{ inputs.grep }}"
+          WORKERS="${{ inputs.workers }}"
+          RETRIES="${{ inputs.retries }}"
+          FULLY_PARALLEL="${{ inputs.fully_parallel }}"
+          BROWSER="${{ inputs.browser }}"
+          set -o pipefail
+          mkdir -p logs
+          EXTRA_ARGS=""
+          [ -n "$WORKERS" ] && EXTRA_ARGS="$EXTRA_ARGS --workers=$WORKERS"
+          [ -n "$RETRIES" ] && EXTRA_ARGS="$EXTRA_ARGS --retries=$RETRIES"
+          [ "$FULLY_PARALLEL" = "true" ] && EXTRA_ARGS="$EXTRA_ARGS --fully-parallel"
+          export AUTOM_BROWSER="$BROWSER"
           if [ -n "$GREP_PATTERN" ]; then
-            npx playwright test $SPEC_PATHS_ARG --grep "$GREP_PATTERN"
+            npx playwright test $SPEC_PATHS_ARG --grep "$GREP_PATTERN" $EXTRA_ARGS 2>&1 | tee logs/test-output.log
           else
-            npx playwright test $SPEC_PATHS_ARG
+            npx playwright test $SPEC_PATHS_ARG $EXTRA_ARGS 2>&1 | tee logs/test-output.log
           fi
         continue-on-error: true
         id: run
-
+ 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         if: always()
@@ -97,29 +118,41 @@ jobs:
             logs/playwright-report.json
           retention-days: 7
           if-no-files-found: warn
-
-      - name: Send test results to Autonix
+ 
+      - name: Send test results to AutonixQ
         if: always()
         run: |
           if [ -f logs/playwright-report.json ]; then
             FILE_SIZE=$(wc -c < logs/playwright-report.json)
             if [ "$FILE_SIZE" -le 5242880 ]; then
               RESULTS=$(base64 -w 0 logs/playwright-report.json 2>/dev/null || base64 logs/playwright-report.json | tr -d '\n')
-              curl -s -o /dev/null -X POST "${{ inputs.callback_url }}&type=results" \
-                -H "Content-Type: application/json" \
-                --max-time 30 \
-                -d "{\"results\":\"${RESULTS}\"}" || true
+              BODY="{\"results\":\"${RESULTS}\"}"
+              for attempt in 1 2 3; do
+                HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${{ inputs.callback_url }}&type=results" \
+                  -H "Content-Type: application/json" \
+                  --max-time 30 \
+                  -d "$BODY")
+                echo "Results upload attempt $attempt — HTTP $HTTP_CODE"
+                if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+                  break
+                fi
+                [ $attempt -lt 3 ] && sleep $((attempt * 5))
+              done
             fi
           fi
-
-      - name: Report results to Autonix
+ 
+      - name: Report results to AutonixQ
         if: always()
         run: |
           STATUS="passed"
           if [ "${{ steps.run.outcome }}" != "success" ]; then
             STATUS="failed"
           fi
-          PAYLOAD="{\"status\":\"${STATUS}\",\"run_id\":\"${{ inputs.run_id }}\",\"pipelineUrl\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}"
+          OUTPUT_SUMMARY=""
+          if [ -f logs/test-output.log ]; then
+            OUTPUT_SUMMARY=$(grep -E '^[[:space:]]*[0-9]+ (passed|failed|flaky|skipped|did not run)' logs/test-output.log | sed -e 's/^[[:space:]]*//' | tr '\n' ',' | sed -e 's/,$//' -e 's/,/, /g')
+          fi
+          PAYLOAD="{\"status\":\"${STATUS}\",\"run_id\":\"${{ inputs.run_id }}\",\"pipelineUrl\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"output\":\"${OUTPUT_SUMMARY}\"}"
           for attempt in 1 2 3 4 5; do
             HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${{ inputs.callback_url }}" \
               -H "Content-Type: application/json" \
