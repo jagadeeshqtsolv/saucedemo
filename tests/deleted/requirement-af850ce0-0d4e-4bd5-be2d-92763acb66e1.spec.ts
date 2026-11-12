@@ -1,3 +1,4 @@
+// Archived requirement spec (was tests/scrum-7-product-listing-add-to-cart.spec.ts)
 import { test, expect } from '@support/fixtures';
 import env from '@support/env';
 import datadrivenRows from '@testdata/datasets/datadriven.json';

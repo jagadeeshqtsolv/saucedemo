@@ -1,0 +1,71 @@
+{
+  "id": "f4b3dd9d-a826-4772-b4d8-7484dc3e099d",
+  "testPlanId": "8ad75bcf-0744-4cae-b70f-26a4782227f7",
+  "requirementId": "315320ca-195a-4653-b20c-8a6a94a08e9b",
+  "suiteName": "[SCRUM-7] Product Listing & Add to Cart",
+  "case": {
+    "id": "f4b3dd9d-a826-4772-b4d8-7484dc3e099d",
+    "title": "Smoke: Login → Add Backpack to Cart updates cart icon",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "s1",
+        "action": "openUrl",
+        "targetDescription": "Open application URL",
+        "value": "https://www.saucedemo.com"
+      },
+      {
+        "id": "s2",
+        "action": "fill",
+        "targetDescription": "Enter username",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillUsername",
+        "value": "standard_user"
+      },
+      {
+        "id": "s3",
+        "action": "fill",
+        "targetDescription": "Enter password",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "fillPassword",
+        "value": "secret_sauce"
+      },
+      {
+        "id": "s4",
+        "action": "tap",
+        "targetDescription": "Click Login button",
+        "screenName": "SwagLabsPage",
+        "pageObjectMethod": "clickLogin"
+      },
+      {
+        "id": "s5",
+        "action": "assertVisible",
+        "targetDescription": "Verify redirected to Inventory page",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "verifyOnPage"
+      },
+      {
+        "id": "s6",
+        "action": "tap",
+        "targetDescription": "Add 'Sauce Labs Backpack' to cart",
+        "screenName": "InventoryPage",
+        "pageObjectMethod": "clickAddToCartSauceLabsBackpackSauceLabsBackpack"
+      },
+      {
+        "id": "s7",
+        "action": "assertText",
+        "targetDescription": "Verify cart badge shows 1 item",
+        "locatorHint": ".shopping_cart_badge",
+        "assertion": "1"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}
